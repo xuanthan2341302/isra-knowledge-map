@@ -16,9 +16,9 @@ header{height:72px;border-bottom:1px solid var(--line);display:flex;align-items:
 main{max-width:1600px;margin:auto;padding:24px 28px}.page-title{display:flex;justify-content:space-between;align-items:end;margin-bottom:20px}.eyebrow{color:var(--cyan);font-size:10px;letter-spacing:.18em;font-weight:700}.page-title h1{font:600 27px "Space Grotesk";margin:6px 0 4px}.page-title p{color:var(--muted);font-size:13px;margin:0}
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:16px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:15px 17px}.stat label{font-size:11px;color:var(--muted)}.stat strong{display:block;font:600 25px "Space Grotesk";margin-top:7px}.stat:nth-child(1) strong{color:var(--cyan)}.stat:nth-child(2) strong{color:var(--blue)}.stat:nth-child(3) strong{color:var(--green)}.stat:nth-child(4) strong{color:var(--amber)}
 .layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:15px}.graph-card,.side-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}.toolbar{padding:13px 15px;border-bottom:1px solid var(--line);display:flex;gap:9px;align-items:center;flex-wrap:wrap}.search{flex:1;min-width:180px;background:#0b1423;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:10px 12px;font:12px "DM Sans";outline:none}.search:focus,input:focus{border-color:var(--cyan)}select,input{background:#0b1423;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:9px 10px;font:12px "DM Sans";min-width:0}.graph-wrap{height:590px;position:relative;background:radial-gradient(ellipse at center,#14243a 0%,#0b1423 70%)}#cy{position:absolute;inset:0}.graph-hint{position:absolute;bottom:13px;left:15px;color:#8194ad;font-size:10px;pointer-events:none}.legend{display:flex;gap:13px;align-items:center;padding:12px 16px;border-top:1px solid var(--line);flex-wrap:wrap}.legend span{font-size:10px;color:var(--muted);display:flex;align-items:center;gap:6px}.swatch{width:8px;height:8px;border-radius:50%}
-.side-card{padding:17px;min-height:100%}.side-card h3{font:600 15px "Space Grotesk";margin:0 0 6px}.side-card .sub{color:var(--muted);font-size:11px;line-height:1.5;margin:0 0 17px}.empty{border:1px dashed #34445d;border-radius:10px;padding:18px 13px;color:var(--muted);font-size:12px;line-height:1.6;text-align:center}.detail-label{font-size:9px;letter-spacing:.15em;color:var(--muted);margin:17px 0 6px;text-transform:uppercase}.detail-value{font-size:12px;line-height:1.6;overflow-wrap:anywhere}.tag{display:inline-block;background:#1b3449;color:#8ee7f1;border-radius:20px;padding:4px 8px;font-size:10px;margin:2px 3px 2px 0}.api-panel{margin-top:15px;background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:15px}.api-panel summary{cursor:pointer;font-size:12px;font-weight:700}.api-fields{display:grid;grid-template-columns:2fr 1fr auto;gap:9px;margin-top:13px}.api-fields input{width:100%}.message{font-size:11px;color:var(--muted);margin-top:10px;min-height:16px}.footer{color:#63758e;font-size:10px;text-align:center;padding:22px}
+.side-card{padding:17px;min-height:100%}.side-card h3{font:600 15px "Space Grotesk";margin:0 0 6px}.side-card .sub{color:var(--muted);font-size:11px;line-height:1.5;margin:0 0 17px}.empty{border:1px dashed #34445d;border-radius:10px;padding:18px 13px;color:var(--muted);font-size:12px;line-height:1.6;text-align:center}.detail-label{font-size:9px;letter-spacing:.15em;color:var(--muted);margin:17px 0 6px;text-transform:uppercase}.detail-value{font-size:12px;line-height:1.6;overflow-wrap:anywhere}.tag{display:inline-block;background:#1b3449;color:#8ee7f1;border-radius:20px;padding:4px 8px;font-size:10px;margin:2px 3px 2px 0}.api-panel{margin-top:15px;background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:15px}.api-panel summary{cursor:pointer;font-size:12px;font-weight:700}.message{font-size:11px;color:var(--muted);margin-top:10px;min-height:16px}.footer{color:#63758e;font-size:10px;text-align:center;padding:22px}
 @media(max-width:900px){main{padding:18px 14px}.layout{grid-template-columns:1fr}.graph-wrap{height:500px}.stats{grid-template-columns:repeat(2,1fr)}header{padding:0 15px}.page-title{align-items:start;gap:12px;flex-direction:column}}
-@media(max-width:540px){.api-fields{grid-template-columns:1fr}.header-right .status{display:none}.graph-wrap{height:420px}}
+@media(max-width:540px){.header-right .status{display:none}.graph-wrap{height:420px}}
 </style>
 </head>
 <body>
@@ -32,7 +32,7 @@ main{max-width:1600px;margin:auto;padding:24px 28px}.page-title{display:flex;jus
 <div class="graph-card"><div class="toolbar"><input class="search" id="search" placeholder="Tìm khái niệm, phương pháp, công trình…"><select id="typeFilter"><option value="">Tất cả loại nút</option><option value="concept">Concept</option><option value="method">Method</option><option value="paper">Paper</option><option value="dataset">Dataset</option><option value="task">Task</option></select><button class="btn" id="resetBtn">Đặt lại</button></div><div class="graph-wrap"><div id="cy"></div><div class="graph-hint">Kéo nút để sắp xếp · Cuộn để zoom · Chọn nút để xem chi tiết</div></div><div class="legend"><span><i class="swatch" style="background:#58d6ee"></i>Concept</span><span><i class="swatch" style="background:#668cff"></i>Method</span><span><i class="swatch" style="background:#52d6a0"></i>Paper</span><span><i class="swatch" style="background:#f2bd68"></i>Dataset / Task</span></div></div>
 <aside class="side-card"><h3>Chi tiết tri thức</h3><p class="sub">Chọn một nút trên bản đồ để xem mô tả, nguồn và bằng chứng liên quan.</p><div id="details" class="empty">Chưa chọn nút nào.<br>Hãy chọn một nút trên bản đồ.</div><div class="detail-label">Hướng dẫn</div><div class="detail-value" style="color:var(--muted)">• Nhấn nút để xem thông tin.<br>• Nhấn đúp nút để tập trung vào vùng lân cận.<br>• Dùng ô tìm kiếm để làm nổi bật kết quả.</div></aside>
 </section>
-<details class="api-panel" open><summary>Kết nối dữ liệu ISRA API</summary><div class="api-fields"><input id="apiUrl" placeholder="Production URL của ISRA_GRAPH_API"><input id="runId" placeholder="run_id"><button class="btn primary" id="connectBtn">Tải dữ liệu</button></div><div class="message" id="message">Nhập Production URL và run_id. Ví dụ API cần trả về { status, run_id, elements, statistics }.</div></details>
+<section class="api-panel"><summary>Đồng bộ dữ liệu ISRA</summary><div class="message" id="message">Đang khởi tạo kết nối đến ISRA Graph API…</div><div class="message" id="syncInfo">Tự động kiểm tra dữ liệu mới mỗi 60 giây.</div></section>
 <div class="footer">ISRA · Scientific Knowledge Mapping · Prototype interface</div>
 </main>
 <script>
@@ -61,8 +61,63 @@ function loadDemo(){const els=[...demo,...demoEdges];init(els);stats(els);docume
 document.getElementById('demoBtn').onclick=loadDemo;document.getElementById('fitBtn').onclick=()=>cy&&cy.fit(undefined,45);document.getElementById('resetBtn').onclick=()=>{document.getElementById('search').value='';document.getElementById('typeFilter').value='';if(cy){cy.elements().removeClass('faded highlight');cy.fit(undefined,45);}};
 function filter(){if(!cy)return;const q=document.getElementById('search').value.toLowerCase(),t=document.getElementById('typeFilter').value;cy.nodes().forEach(n=>{const match=(!q||(n.data('label')||'').toLowerCase().includes(q)||(n.data('description')||'').toLowerCase().includes(q))&&(!t||n.data('type')===t);n.toggleClass('highlight',!!q&&match);n.toggleClass('faded',!!(q||t)&&!match);});cy.edges().forEach(e=>e.toggleClass('faded',!!(q||t)&&!e.source().hasClass('highlight')&&!e.target().hasClass('highlight')));}
 document.getElementById('search').oninput=filter;document.getElementById('typeFilter').onchange=filter;
-document.getElementById('connectBtn').onclick=async()=>{const url=document.getElementById('apiUrl').value.trim(),run=document.getElementById('runId').value.trim(),msg=document.getElementById('message'),btn=document.getElementById('connectBtn');if(!url||!run){msg.textContent='Vui lòng nhập Production URL và run_id.';return;}try{btn.disabled=true;msg.textContent='Đang kết nối…';const u=new URL(url);u.searchParams.set('run_id',run);const res=await fetch(u.toString(),{method:'GET',headers:{'Accept':'application/json'}});if(!res.ok)throw new Error(`HTTP ${res.status}`);const data=await res.json();if(!Array.isArray(data.elements))throw new Error('API chưa trả về mảng elements.');const els=data.elements;init(els);stats(els);document.getElementById('statusText').textContent='Đã kết nối API';document.getElementById('statusDot').className='dot ok';msg.textContent=`Tải thành công: ${data.statistics?.node_count??els.filter(x=>!x.data?.source).length} nodes, ${data.statistics?.edge_count??els.filter(x=>x.data?.source).length} edges.`;document.getElementById('details').className='empty';document.getElementById('details').innerHTML='Chưa chọn nút nào.<br>Hãy chọn một nút trên bản đồ.';}catch(e){msg.textContent='Không tải được dữ liệu: '+e.message+'. Kiểm tra URL, run_id và CORS của Webhook.';document.getElementById('statusText').textContent='Kết nối thất bại';document.getElementById('statusDot').className='dot';}finally{btn.disabled=false;}};
+const API_URL='https://isralab.app.n8n.cloud/webhook/isra-graph';
+const REFRESH_INTERVAL_MS=60000;
+let lastLoadedRunId=null;
+let isRefreshing=false;
+
+function setApiStatus(text,ok=false){
+  document.getElementById('statusText').textContent=text;
+  document.getElementById('statusDot').className=ok?'dot ok':'dot';
+}
+function showEmptyDetails(){
+  document.getElementById('details').className='empty';
+  document.getElementById('details').innerHTML='Chưa chọn nút nào.<br>Hãy chọn một nút trên bản đồ.';
+}
+async function refreshGraph(){
+  if(isRefreshing)return;
+  isRefreshing=true;
+  const msg=document.getElementById('message');
+  const syncInfo=document.getElementById('syncInfo');
+  try{
+    msg.textContent='Đang kiểm tra dữ liệu ISRA mới nhất…';
+    const res=await fetch(API_URL,{method:'GET',cache:'no-store'});
+    if(!res.ok)throw new Error(`HTTP ${res.status}`);
+    const data=await res.json();
+    if(data.status==='empty'||!data.run_id){
+      setApiStatus('Chưa có dữ liệu nghiên cứu');
+      msg.textContent='API đã phản hồi nhưng chưa tìm thấy lượt nghiên cứu có trạng thái processed.';
+      return;
+    }
+    if(!Array.isArray(data.elements))throw new Error('API chưa trả về mảng elements.');
+    const receivedRunId=String(data.run_id);
+    const now=new Date().toLocaleTimeString('vi-VN');
+    if(receivedRunId===lastLoadedRunId){
+      setApiStatus('Đã đồng bộ · dữ liệu mới nhất',true);
+      msg.textContent=`Dữ liệu vẫn mới nhất (run_id ${receivedRunId}); không cần vẽ lại bản đồ.`;
+      syncInfo.textContent=`Kiểm tra gần nhất: ${now} · Tự động kiểm tra mỗi 60 giây.`;
+      return;
+    }
+    init(data.elements);
+    stats(data.elements);
+    showEmptyDetails();
+    lastLoadedRunId=receivedRunId;
+    setApiStatus('Đã kết nối API · Live',true);
+    msg.textContent=`Đã cập nhật run_id ${receivedRunId}: ${data.statistics?.node_count??data.elements.filter(x=>!x.data?.source).length} nodes, ${data.statistics?.edge_count??data.elements.filter(x=>x.data?.source).length} edges.`;
+    syncInfo.textContent=`Cập nhật lúc ${now} · Tự động kiểm tra mỗi 60 giây.`;
+  }catch(e){
+    setApiStatus('API chưa kết nối');
+    msg.textContent='Không tải được dữ liệu từ ISRA API: '+e.message+'. Bản đồ hiện tại được giữ nguyên; hệ thống sẽ thử lại sau 60 giây.';
+  }finally{
+    isRefreshing=false;
+  }
+}
+
 loadDemo();
+document.getElementById('statusText').textContent='Đang hiển thị dữ liệu minh họa · chờ API';
+document.getElementById('message').textContent='Đang kết nối ISRA Graph API tự động…';
+refreshGraph();
+setInterval(refreshGraph,REFRESH_INTERVAL_MS);
 </script>
 </body>
 </html>
