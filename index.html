@@ -17,6 +17,7 @@ main{max-width:1600px;margin:auto;padding:24px 28px}.page-title{display:flex;jus
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:16px}.stat{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:15px 17px}.stat label{font-size:11px;color:var(--muted)}.stat strong{display:block;font:600 25px "Space Grotesk";margin-top:7px}.stat:nth-child(1) strong{color:var(--cyan)}.stat:nth-child(2) strong{color:var(--blue)}.stat:nth-child(3) strong{color:var(--green)}.stat:nth-child(4) strong{color:var(--amber)}
 .layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:15px}.graph-card,.side-card{background:var(--panel);border:1px solid var(--line);border-radius:14px;overflow:hidden}.toolbar{padding:13px 15px;border-bottom:1px solid var(--line);display:flex;gap:9px;align-items:center;flex-wrap:wrap}.search{flex:1;min-width:180px;background:#0b1423;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:10px 12px;font:12px "DM Sans";outline:none}.search:focus,input:focus{border-color:var(--cyan)}select,input{background:#0b1423;color:var(--text);border:1px solid var(--line);border-radius:8px;padding:9px 10px;font:12px "DM Sans";min-width:0}.graph-wrap{height:590px;position:relative;background:radial-gradient(ellipse at center,#14243a 0%,#0b1423 70%)}#cy{position:absolute;inset:0}.graph-hint{position:absolute;bottom:13px;left:15px;color:#8194ad;font-size:10px;pointer-events:none}.legend{display:flex;gap:13px;align-items:center;padding:12px 16px;border-top:1px solid var(--line);flex-wrap:wrap}.legend span{font-size:10px;color:var(--muted);display:flex;align-items:center;gap:6px}.swatch{width:8px;height:8px;border-radius:50%}
 .side-card{padding:17px;min-height:100%}.side-card h3{font:600 15px "Space Grotesk";margin:0 0 6px}.side-card .sub{color:var(--muted);font-size:11px;line-height:1.5;margin:0 0 17px}.empty{border:1px dashed #34445d;border-radius:10px;padding:18px 13px;color:var(--muted);font-size:12px;line-height:1.6;text-align:center}.detail-label{font-size:9px;letter-spacing:.15em;color:var(--muted);margin:17px 0 6px;text-transform:uppercase}.detail-value{font-size:12px;line-height:1.6;overflow-wrap:anywhere}.tag{display:inline-block;background:#1b3449;color:#8ee7f1;border-radius:20px;padding:4px 8px;font-size:10px;margin:2px 3px 2px 0}.api-panel{margin-top:15px;background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:15px}.api-panel summary{cursor:pointer;font-size:12px;font-weight:700}.message{font-size:11px;color:var(--muted);margin-top:10px;min-height:16px}.footer{color:#63758e;font-size:10px;text-align:center;padding:22px}
+.report-section{margin-top:18px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}.report-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}.report-head h2{font:600 18px "Space Grotesk";margin:0}.report-head p{font-size:11px;color:var(--muted);margin:5px 0 0}.report-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:15px}.report-card{background:#0b1423;border:1px solid var(--line);border-radius:11px;padding:14px}.report-card h3{font-size:13px;margin:0 0 8px;line-height:1.5}.report-meta{font-size:10px;color:var(--muted);line-height:1.7;margin-bottom:12px}.report-actions{display:flex;gap:8px;flex-wrap:wrap}.report-view{display:none;margin-top:14px;border-top:1px solid var(--line);padding-top:14px}.report-view.open{display:block}.report-content{white-space:pre-wrap;overflow-wrap:anywhere;background:#0b1423;border:1px solid var(--line);border-radius:10px;padding:16px;font-size:12px;line-height:1.75;max-height:650px;overflow:auto}.report-content h1,.report-content h2,.report-content h3{color:var(--cyan)}.report-empty{color:var(--muted);font-size:12px;padding:18px 0}
 @media(max-width:900px){main{padding:18px 14px}.layout{grid-template-columns:1fr}.graph-wrap{height:500px}.stats{grid-template-columns:repeat(2,1fr)}header{padding:0 15px}.page-title{align-items:start;gap:12px;flex-direction:column}}
 @media(max-width:540px){.header-right .status{display:none}.graph-wrap{height:420px}}
 </style>
@@ -33,6 +34,12 @@ main{max-width:1600px;margin:auto;padding:24px 28px}.page-title{display:flex;jus
 <aside class="side-card"><h3>Chi tiết tri thức</h3><p class="sub">Chọn một nút trên bản đồ để xem mô tả, nguồn và bằng chứng liên quan.</p><div id="details" class="empty">Chưa chọn nút nào.<br>Hãy chọn một nút trên bản đồ.</div><div class="detail-label">Hướng dẫn</div><div class="detail-value" style="color:var(--muted)">• Nhấn nút để xem thông tin.<br>• Nhấn đúp nút để tập trung vào vùng lân cận.<br>• Dùng ô tìm kiếm để làm nổi bật kết quả.</div></aside>
 </section>
 <section class="api-panel"><summary>Đồng bộ dữ liệu ISRA</summary><div class="message" id="message">Đang khởi tạo kết nối đến ISRA Graph API…</div><div class="message" id="syncInfo">Tự động kiểm tra dữ liệu mới mỗi 60 giây.</div></section>
+<section class="report-section" id="reports">
+  <div class="report-head"><div><h2>Báo cáo nghiên cứu</h2><p>Xem và tải các báo cáo phân tích chuyên sâu được tạo từ những lượt nghiên cứu ISRA.</p></div><button class="btn" id="refreshReportsBtn">Làm mới danh sách</button></div>
+  <div class="message" id="reportsMessage">Đang tải danh sách báo cáo…</div>
+  <div class="report-list" id="reportList"></div>
+  <div class="report-view" id="reportView"><div class="report-head"><h2 id="reportTitle">Nội dung báo cáo</h2><div class="report-actions"><button class="btn primary" id="downloadReportBtn">Tải xuống .md</button><button class="btn" id="closeReportBtn">Đóng</button></div></div><div class="report-content" id="reportContent"></div></div>
+</section>
 <div class="footer">ISRA · Scientific Knowledge Mapping · Prototype interface</div>
 </main>
 <script>
@@ -62,62 +69,74 @@ document.getElementById('demoBtn').onclick=loadDemo;document.getElementById('fit
 function filter(){if(!cy)return;const q=document.getElementById('search').value.toLowerCase(),t=document.getElementById('typeFilter').value;cy.nodes().forEach(n=>{const match=(!q||(n.data('label')||'').toLowerCase().includes(q)||(n.data('description')||'').toLowerCase().includes(q))&&(!t||n.data('type')===t);n.toggleClass('highlight',!!q&&match);n.toggleClass('faded',!!(q||t)&&!match);});cy.edges().forEach(e=>e.toggleClass('faded',!!(q||t)&&!e.source().hasClass('highlight')&&!e.target().hasClass('highlight')));}
 document.getElementById('search').oninput=filter;document.getElementById('typeFilter').onchange=filter;
 const API_URL='https://isralab.app.n8n.cloud/webhook/isra-graph';
+const REPORTS_API_URL='https://isralab.app.n8n.cloud/webhook/isra-reports';
 const REFRESH_INTERVAL_MS=60000;
 let lastLoadedRunId=null;
 let isRefreshing=false;
-
-function setApiStatus(text,ok=false){
-  document.getElementById('statusText').textContent=text;
-  document.getElementById('statusDot').className=ok?'dot ok':'dot';
-}
-function showEmptyDetails(){
-  document.getElementById('details').className='empty';
-  document.getElementById('details').innerHTML='Chưa chọn nút nào.<br>Hãy chọn một nút trên bản đồ.';
-}
+function setApiStatus(text,ok=false){document.getElementById('statusText').textContent=text;document.getElementById('statusDot').className=ok?'dot ok':'dot';}
+function showEmptyDetails(){document.getElementById('details').className='empty';document.getElementById('details').innerHTML='Chưa chọn nút nào.<br>Hãy chọn một nút trên bản đồ.';}
 async function refreshGraph(){
-  if(isRefreshing)return;
-  isRefreshing=true;
-  const msg=document.getElementById('message');
-  const syncInfo=document.getElementById('syncInfo');
-  try{
-    msg.textContent='Đang kiểm tra dữ liệu ISRA mới nhất…';
-    const res=await fetch(API_URL,{method:'GET',cache:'no-store'});
-    if(!res.ok)throw new Error(`HTTP ${res.status}`);
-    const data=await res.json();
-    if(data.status==='empty'||!data.run_id){
-      setApiStatus('Chưa có dữ liệu nghiên cứu');
-      msg.textContent='API đã phản hồi nhưng chưa tìm thấy lượt nghiên cứu có trạng thái processed.';
-      return;
-    }
-    if(!Array.isArray(data.elements))throw new Error('API chưa trả về mảng elements.');
-    const receivedRunId=String(data.run_id);
-    const now=new Date().toLocaleTimeString('vi-VN');
-    if(receivedRunId===lastLoadedRunId){
-      setApiStatus('Đã đồng bộ · dữ liệu mới nhất',true);
-      msg.textContent=`Dữ liệu vẫn mới nhất (run_id ${receivedRunId}); không cần vẽ lại bản đồ.`;
-      syncInfo.textContent=`Kiểm tra gần nhất: ${now} · Tự động kiểm tra mỗi 60 giây.`;
-      return;
-    }
-    init(data.elements);
-    stats(data.elements);
-    showEmptyDetails();
-    lastLoadedRunId=receivedRunId;
-    setApiStatus('Đã kết nối API · Live',true);
-    msg.textContent=`Đã cập nhật run_id ${receivedRunId}: ${data.statistics?.node_count??data.elements.filter(x=>!x.data?.source).length} nodes, ${data.statistics?.edge_count??data.elements.filter(x=>x.data?.source).length} edges.`;
-    syncInfo.textContent=`Cập nhật lúc ${now} · Tự động kiểm tra mỗi 60 giây.`;
-  }catch(e){
-    setApiStatus('API chưa kết nối');
-    msg.textContent='Không tải được dữ liệu từ ISRA API: '+e.message+'. Bản đồ hiện tại được giữ nguyên; hệ thống sẽ thử lại sau 60 giây.';
-  }finally{
-    isRefreshing=false;
-  }
+ if(isRefreshing)return;isRefreshing=true;
+ const msg=document.getElementById('message'),syncInfo=document.getElementById('syncInfo');
+ try{
+  msg.textContent='Đang kiểm tra dữ liệu ISRA mới nhất…';
+  const res=await fetch(API_URL,{method:'GET',cache:'no-store'});if(!res.ok)throw new Error(`HTTP ${res.status}`);
+  const data=await res.json();
+  if(data.status==='empty'||!data.run_id){setApiStatus('Chưa có dữ liệu nghiên cứu');msg.textContent='API đã phản hồi nhưng chưa tìm thấy lượt nghiên cứu có trạng thái processed.';return;}
+  if(!Array.isArray(data.elements))throw new Error('API chưa trả về mảng elements.');
+  const receivedRunId=String(data.run_id),now=new Date().toLocaleTimeString('vi-VN');
+  if(receivedRunId===lastLoadedRunId){setApiStatus('Đã đồng bộ · dữ liệu mới nhất',true);msg.textContent=`Dữ liệu vẫn mới nhất (run_id ${receivedRunId}); không cần vẽ lại bản đồ.`;syncInfo.textContent=`Kiểm tra gần nhất: ${now} · Tự động kiểm tra mỗi 60 giây.`;return;}
+  init(data.elements);stats(data.elements);showEmptyDetails();lastLoadedRunId=receivedRunId;setApiStatus('Đã kết nối API · Live',true);
+  msg.textContent=`Đã cập nhật run_id ${receivedRunId}: ${data.statistics?.node_count??data.elements.filter(x=>!x.data?.source).length} nodes, ${data.statistics?.edge_count??data.elements.filter(x=>x.data?.source).length} edges.`;
+  syncInfo.textContent=`Cập nhật lúc ${now} · Tự động kiểm tra mỗi 60 giây.`;
+ }catch(e){setApiStatus('API chưa kết nối');msg.textContent='Không tải được dữ liệu từ ISRA API: '+e.message+'. Bản đồ hiện tại được giữ nguyên; hệ thống sẽ thử lại sau 60 giây.';}
+ finally{isRefreshing=false;}
 }
-
+let reportRecords=[];
+function reportMarkdown(record){return record.report_markdown??record.markdown??record.report??'';}
+function getRunId(record){return String(record.run_id??record.id??'');}
+function renderReports(records){
+ const list=document.getElementById('reportList');list.innerHTML='';
+ if(!records.length){list.innerHTML='<div class="report-empty">Chưa có báo cáo nào được lưu trong ISRA_RESEARCH_REPORTS.</div>';return;}
+ records.forEach((r,index)=>{
+  const card=document.createElement('article');card.className='report-card';
+  const title=document.createElement('h3');title.textContent=r.research_field||`Báo cáo nghiên cứu · run_id ${getRunId(r)}`;
+  const meta=document.createElement('div');meta.className='report-meta';meta.textContent=`run_id: ${getRunId(r)||'—'} · Trạng thái: ${r.report_status||'—'} · Định dạng: ${r.report_format||'md'}`;
+  const actions=document.createElement('div');actions.className='report-actions';
+  const view=document.createElement('button');view.className='btn primary';view.textContent='Xem báo cáo';view.onclick=()=>openReport(index);
+  const download=document.createElement('button');download.className='btn';download.textContent='Tải .md';download.onclick=()=>downloadReport(index);
+  actions.append(view,download);card.append(title,meta,actions);list.append(card);
+ });
+}
+async function refreshReports(){
+ const msg=document.getElementById('reportsMessage');msg.textContent='Đang tải danh sách báo cáo…';
+ try{
+  const res=await fetch(REPORTS_API_URL,{method:'GET',cache:'no-store'});if(!res.ok)throw new Error(`HTTP ${res.status}`);
+  const payload=await res.json();
+  reportRecords=Array.isArray(payload)?payload:(Array.isArray(payload.data)?payload.data:(Array.isArray(payload.reports)?payload.reports:[]));
+  renderReports(reportRecords);msg.textContent=`Đã tải ${reportRecords.length} báo cáo.`;
+ }catch(e){msg.textContent='Không tải được báo cáo: '+e.message+'. Kiểm tra trạng thái workflow và ISRA_REPORTS_API.';}
+}
+function openReport(index){
+ const r=reportRecords[index];if(!r)return;
+ const md=reportMarkdown(r);document.getElementById('reportTitle').textContent=(r.research_field||'Báo cáo nghiên cứu')+` · run_id ${getRunId(r)}`;
+ document.getElementById('reportContent').textContent=md||'Bản ghi này chưa có nội dung report_markdown.';
+ document.getElementById('reportView').classList.add('open');document.getElementById('reportView').scrollIntoView({behavior:'smooth',block:'start'});
+ document.getElementById('downloadReportBtn').onclick=()=>downloadReport(index);
+}
+function downloadReport(index){
+ const r=reportRecords[index];if(!r)return;const md=reportMarkdown(r);if(!md){alert('Báo cáo chưa có nội dung Markdown.');return;}
+ const blob=new Blob([md],{type:'text/markdown;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+ a.href=url;a.download=`ISRA_Report_${getRunId(r)||index}.md`;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+}
+document.getElementById('refreshReportsBtn').onclick=refreshReports;
+document.getElementById('closeReportBtn').onclick=()=>document.getElementById('reportView').classList.remove('open');
+document.getElementById('downloadReportBtn').onclick=()=>{};
 loadDemo();
 document.getElementById('statusText').textContent='Đang hiển thị dữ liệu minh họa · chờ API';
 document.getElementById('message').textContent='Đang kết nối ISRA Graph API tự động…';
-refreshGraph();
-setInterval(refreshGraph,REFRESH_INTERVAL_MS);
+refreshGraph();setInterval(refreshGraph,REFRESH_INTERVAL_MS);
+refreshReports();
 </script>
 </body>
 </html>
